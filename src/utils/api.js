@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL="https://api.themoviedb.org/3";
+const BASE_URL="https://api.themoviedb.org/3/movie/550?api_key=f907940a64c1ec5b521b71de96e634da";
 
 const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmOTA3OTQwYTY0YzFlYzViNTIxYjcxZGU5NmU2MzRkYSIsInN1YiI6IjY0ZjQ4NGM1NWYyYjhkMDBhYmNhYzIzNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Dvg-fuPS3MQ830bBl--tRyPPsXEIJHE7yKSzvc8X8nQ";
 
