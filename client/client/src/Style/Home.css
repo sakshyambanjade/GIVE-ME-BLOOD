@@ -1,0 +1,19 @@
+.home-container {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .navbar,
+  .carousel {
+    margin-bottom: 10px; /* Increase the margin for more space */
+  }
+  
+  .card {
+    margin-bottom: 20px; /* Keep the margin for the card */
+  }
+  
+  /* Ensure the last component doesn't have a bottom margin */
+  .card {
+    margin-bottom: 10;
+  }
+  
