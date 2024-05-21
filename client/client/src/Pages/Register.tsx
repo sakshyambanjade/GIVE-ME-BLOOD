@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container, createTheme, ThemeProvider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
@@ -13,19 +14,27 @@ export default function SignUp() {
     password: ''
   });
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3000/signup', formData);
-      console.log(response.data); // Assuming backend returns some data
-    } catch (err) {
-      setError(err.response.data.message); // Assuming backend sends error message in response
-    }
+    
+    axios.post('http://localhost:3000/signup', formData)
+      .then(response => {
+        console.log(response.data); // Assuming backend returns some data
+        navigate('/login'); // Navigate to login on success
+      })
+      .catch(err => {
+        if (err.response) {
+          setError(err.response.data.message); // Assuming backend sends error message in response
+        } else {
+          setError("An unexpected error occurred"); // Handle other errors (e.g., network errors)
+        }
+      });
   };
 
   return (
@@ -105,7 +114,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="login" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

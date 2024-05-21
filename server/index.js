@@ -1,28 +1,52 @@
+// server/index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const app = express();
+const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 const userModel = require('./models/user');
-// 1 => middlewares
+const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// 2 => routes
-app.post('/signup',(req,res)=>{
-    userModel.create(req.body)
-    .then(users => res.json(users))
-    .catch(err => res.json(err));
-
-})
-// 3 => mongodb_connection
 mongoose.connect('mongodb://127.0.0.1:27017/user')
-    .then(() => console.log('connected'))
-    .catch((error) => console.error('error', error));
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('Error connecting to MongoDB:', error));
 
-// 4 => global error handling
+app.post('/signup', async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // Hash the password
+    const user = await userModel.create({ ...req.body, password: hashedPassword });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
-// 5 => server
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
+    if (user) {
+      // Compare passwords
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) {
+          res.status(500).json({ error: 'Internal server error' });
+        } else if (isMatch) {
+          res.json({ success: true, message: 'Authentication successful!' });
+        } else {
+          res.status(401).json({ error: 'Incorrect password' });
+        }
+      });
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
