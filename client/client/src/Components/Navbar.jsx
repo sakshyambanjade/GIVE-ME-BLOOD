@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 
-const pages = ['lorem', 'lorem', 'lorem','lorem'];
+const pages = ['Home', 'Donate', 'Emergency','Find','About'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
