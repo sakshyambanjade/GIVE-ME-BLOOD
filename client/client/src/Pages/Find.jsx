@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Navbar from '../Components/Navbar'
 function Find() {
   return (
-    <div>Find</div>
+    <div><Navbar/></div>
   )
 }
 

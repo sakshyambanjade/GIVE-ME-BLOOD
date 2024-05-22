@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbar from '../Components/Navbar'
 
 function Emergency() {
   return (
-    <div>Emergency</div>
+    <div>    <Navbar/>
+    </div>
   )
 }
 

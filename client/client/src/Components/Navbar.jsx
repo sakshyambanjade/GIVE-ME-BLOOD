@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,13 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
+import { Link, useLocation } from 'react-router-dom';
 
-const pages = ['Home', 'Donate', 'Emergency','Find','About'];
+const pages = ['Home', 'Donate', 'Emergency', 'Find', 'About'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar() {
+function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const location = useLocation(); // Get current route location
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,15 +38,26 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  // Function to get the name corresponding to the current route
+  const getCurrentRouteName = () => {
+    const pathname = location.pathname;
+    if (pathname === '/') {
+      return 'Home'; // Return 'Home' if the current route is '/'
+    } else {
+      const currentPage = pages.find(page => `/${page.toLowerCase()}` === pathname);
+      return currentPage || "Unknown"; // Return "Unknown" if no matching page is found
+    }
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#1F1E1D' }}>
-      <Container maxWidth="xl" sx={{ px: 2 }}> {/* Reduce padding on the Container */}
-        <Toolbar disableGutters sx={{ px: 2 }}> {/* Reduce padding on the Toolbar */}
+      <Container maxWidth="xl" sx={{ px: 2 }}>
+        <Toolbar disableGutters sx={{ px: 2, justifyContent: 'center' }}>
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href=""
+            component={Link}
+            to="/" // Ensure 'Home' button navigates to the root route
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -55,70 +69,16 @@ function ResponsiveAppBar() {
             }}
           >
             <BloodtypeIcon fontSize="large"/>
-      
+            <Typography variant="body2" color="inherit" sx={{ ml: 1 }}>{getCurrentRouteName()}</Typography>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              sx={{ color: 'white' }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'white',
-              textDecoration: 'none',
-            }}
-          >
-          <BloodtypeIcon fontSize="large"/>
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}> {/* Center the buttons */}
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 1, color: 'white', display: 'block', mx: 1 }} // Adjust margins
+                component={Link}
+                to={page === 'Home' ? '/' : `/${page.toLowerCase()}`} // Correct 'Home' button link
+                sx={{ color: 'white', mx: 1 }}
               >
                 {page}
               </Button>
@@ -128,7 +88,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="User Avatar" src="/static/images/avatar.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -160,4 +120,4 @@ function ResponsiveAppBar() {
   );
 }
 
-export default ResponsiveAppBar;
+export default Navbar;

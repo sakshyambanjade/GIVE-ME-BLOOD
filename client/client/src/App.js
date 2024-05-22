@@ -14,10 +14,10 @@ function App() {
     <Route path="/login" element={<SignInSide/>}/>
     <Route path="/signup" element={<SignIn/>}/>
     <Route path="/" element={<Home/>}/>
-    <Route path="/find " element={<Find/>}/>
-    <Route path="/donate " element={<Donate/>}/>
     <Route path="/about" element={<About/>}/>
     <Route path="/emergency" element={<Emergency/>}/>
+   <Route path="/donate" element={<Donate/>}/>
+   <Route path="/find" element={<Find/>}/>
  </Routes>
    </>
   );
