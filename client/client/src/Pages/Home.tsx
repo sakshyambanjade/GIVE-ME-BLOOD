@@ -2,10 +2,10 @@ import React from 'react';
 import Navbar from '../Components/Navbar';
 import Carousel from '../Components/carousel';
 import Card from '../Components/card';
-import '../Style/Home.css'; // Import the CSS file
+import '../Style/Home.css';
 import Flex from '../Components/vflex'
-import Supscription from '../Components/supscription'
-
+import Supscription from '../Components/subscription'
+import Footer from '../Components/footer'
 function Home() {
   return (
     <div className="home-container">
@@ -16,7 +16,7 @@ function Home() {
       <div className="flex"><Flex/></div>
       <div className="Subscription"><Supscription/></div>
       <div className="flex"><Flex/></div>
-
+      <div className="footer"><Footer/></div>
     </div>
   );
 }
