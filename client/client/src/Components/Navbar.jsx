@@ -50,7 +50,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#1F1E1D' }}>
+    <AppBar position="static" sx={{ backgroundColor: '#1F1E1D', margin: 0, padding: 0 }}>
       <Container maxWidth="xl" sx={{ px: 2 }}>
         <Toolbar disableGutters sx={{ px: 2, justifyContent: 'center' }}>
           <Typography
@@ -66,13 +66,72 @@ function Navbar() {
               letterSpacing: '.3rem',
               color: 'white',
               textDecoration: 'none',
+              alignItems: 'center'
             }}
           >
             <BloodtypeIcon fontSize="large"/>
             <Typography variant="body2" color="inherit" sx={{ ml: 1 }}>{getCurrentRouteName()}</Typography>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          <Typography
+            variant="h6"
+            noWrap
+            component={Link}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'white',
+              textDecoration: 'none',
+              alignItems: 'center'
+            }}
+          >
+            <BloodtypeIcon fontSize="large"/>
+            <Typography variant="body2" color="inherit" sx={{ ml: 1 }}>{getCurrentRouteName()}</Typography>
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             {pages.map((page) => (
               <Button
                 key={page}

@@ -1,19 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .home-container {
-    width: 100%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the container */
-  }
-  
-  .navbar,
-  .carousel {
-    margin-bottom: 10px; /* Increase the margin for more space */
-  }
-  
-  .card {
-    margin-bottom: 20px; /* Keep the margin for the card */
-  }
-  
-  /* Ensure the last component doesn't have a bottom margin */
-  .card {
-    margin-bottom: 10;
-  }
-  
+  width: 100%; /* Full width */
+  margin: 0 auto; /* Center the container */
+  padding: 0; /* Remove any default padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.navbar,
+.carousel {
+  margin-bottom: 10px; /* Increase the margin for more space */
+}
+
+.card {
+  margin-bottom: 20px; /* Space between cards */
+}
+
+.card:last-child {
+  margin-bottom: 0; /* Ensure the last component doesn't have a bottom margin */
+}
+
+.container {
+  padding: 0; /* Remove padding if necessary */
+  width: 100%; /* Ensure full width */
+}
+
+.footer {
+  margin-top: 0; /* Ensure footer has no margin on top */
+  padding: 10px 0; /* Add padding if needed */
+  background-color: #f1f1f1; /* Adjust the background color as needed */
+}
+
+.full-width {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  margin: 0; /* Ensure no margin on the top */
+  padding: 0; /* Ensure no padding on the top */
+}
