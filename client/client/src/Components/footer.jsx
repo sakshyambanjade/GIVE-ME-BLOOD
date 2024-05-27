@@ -10,11 +10,10 @@ export default function App() {
             <MDBCol md='3' lg='4' xl='3' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
                 <MDBIcon color='secondary' icon='gem' className='me-3' />
-                Company name
+               GIVE ME BLOOD
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit.
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, eos corporis inventore molestias eaque ut?
               </p>
             </MDBCol>
 
@@ -22,22 +21,22 @@ export default function App() {
               <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
               <p>
                 <a href='#!' className='text-reset'>
-                  Angular
+                  lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  React
+                lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Vue
+                lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Laravel
+                lorem
                 </a>
               </p>
             </MDBCol>
@@ -46,22 +45,22 @@ export default function App() {
               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
               <p>
                 <a href='#!' className='text-reset'>
-                  Pricing
+                lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Settings
+                lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Orders
+                lorem
                 </a>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
-                  Help
+                lorem
                 </a>
               </p>
             </MDBCol>

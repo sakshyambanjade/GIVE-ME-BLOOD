@@ -16,7 +16,7 @@ const EmailSubscription = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: '#1F1E1D', minHeight: '50vh', py: 5 }}>
+    <Box sx={{ backgroundColor: '#1F1E1D', minHeight: '50vh', py: 3 }}>
       <Container maxWidth="sm" sx={{ mt: 5, color: 'white' }}>
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Typography variant="h4" gutterBottom>
